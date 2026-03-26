@@ -1,0 +1,22 @@
+{
+  "name": "Aditzapp Azterketa",
+  "short_name": "Aditzapp 3",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#2563eb",
+  "description": "Euskarazko aditz-sistemak lantzeko PWA aplikazioa.",
+  "lang": "eu",
+  "icons": [
+    {
+      "src": "icono-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icono-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
