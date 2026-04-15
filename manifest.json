@@ -1,6 +1,6 @@
 {
-  "name": "Aditzapp Azterketa",
-  "short_name": "Aditzapp 3",
+  "name": "Formuapp",
+  "short_name": "Formuapp",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#fafafa",
