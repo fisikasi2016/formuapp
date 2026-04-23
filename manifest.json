@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#fafafa",
   "theme_color": "#2563eb",
-  "description": "Euskarazko aditz-sistemak lantzeko PWA aplikazioa.",
+  "description": "Formulazio ez organikoa lantzeko PWA aplikazioa.",
   "lang": "eu",
   "icons": [
     {
