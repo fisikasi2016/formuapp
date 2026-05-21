@@ -1,12 +1,17 @@
-const CACHE_NAME = "formuapp-pwa-v8";
+const CACHE_NAME = "formuapp-pwa-v10";
+
 
 const archivosAguardar = [
+
   "./",
   "./index.html",
+  "./style.css",
+  "./app.js",
+  "./compounds.js",
   "./manifest.json",
-  "./service-worker.js",
   "./icono-192.png",
   "./icono-512.png"
+
 ];
 
 self.addEventListener("install", (event) => {
