@@ -34,9 +34,33 @@
     // ✅ NUEVO: toggle feedback inmediato + botón repetir fallos
     const instantFeedback = document.getElementById("instantFeedback");
     const repeatFailsBtn = document.getElementById("repeatFails");
+    const actionsPanel = document.getElementById("actionsPanel");
+
+    const optionsToggle = document.getElementById("optionsToggle");
+    const optionsPanel = document.getElementById("optionsPanel");
+
+    function setOptionsPanel(open){
+      optionsPanel.hidden = !open;
+      optionsToggle.setAttribute("aria-expanded", String(open));
+      optionsToggle.textContent = open ? "Aukeren panela ▲" : "Aukeren panela ▼";
+    }
+
+    setOptionsPanel(false);
+
+    optionsToggle.addEventListener("click", () => {
+      setOptionsPanel(optionsPanel.hidden);
+    });
 
     document.querySelectorAll(".btn-mode").forEach(btn => {
-      btn.addEventListener("click", () => btn.classList.toggle("active"));
+
+      btn.addEventListener("click", () => {
+
+        btn.classList.toggle("active");
+
+        updateActionsVisibility();
+
+      });
+
     });
 
     let current = { formulaToName: [], nameToFormula: [] };
@@ -200,6 +224,27 @@
       input.classList.add(ok ? "ok" : "bad");
     }
 
+    function checkSingleInput(input, correctValue, kind){
+      resetInputState(input);
+
+      const field = input.closest(".field");
+      let ok;
+
+      if(kind === "formula"){
+        ok = isCorrectFormula(input.value, correctValue);
+      }else{
+        ok = isCorrectName(input.value, correctValue, input.dataset.kind);
+      }
+
+      input.classList.add(ok ? "ok" : "bad");
+
+      if(ok){
+        addHint(field, "ONDO!");
+      }else{
+        addHint(field, `ZUZENA: ${correctValue}`);
+      }
+    }
+
     // =========================================================
     // BOTONES DE GRUPO
     // =========================================================
@@ -209,7 +254,13 @@
       b.className = "btn btn-main";
       b.textContent = g;
       b.dataset.groupName = g;
-      b.addEventListener("click", () => b.classList.toggle("active"));
+      b.addEventListener("click", () => {
+
+        b.classList.toggle("active");
+
+        updateActionsVisibility();
+
+      });
       return b;
     }
 
@@ -232,8 +283,43 @@
     }
     renderGroupButtons();
 
+    // =========================================================
+    // SUBMENÚS COLAPSABLES
+    // =========================================================
+    function setupSubPanel(toggleId, panelId, label){
+      const btn = document.getElementById(toggleId);
+      const panel = document.getElementById(panelId);
+
+      if(!btn || !panel) return;
+
+      btn.addEventListener("click", () => {
+        const open = panel.hidden;
+
+        panel.hidden = !open;
+        btn.setAttribute("aria-expanded", String(open));
+        btn.textContent = open ? `${label} ▲` : `${label} ▼`;
+      });
+    }
+
+    setupSubPanel("toggleCompounds", "compoundsPanel", "Konposatuak");
+    setupSubPanel("toggleBinary", "binaryPanel", "Konposatu bitarrak");
+    setupSubPanel("toggleTernary", "ternaryPanel", "Konposatu hirutarrak");
+    setupSubPanel("toggleExam", "examPanel", "Frogaren ezaugarriak");
+
     function getSelectedGroups(){
       return Array.from(document.querySelectorAll(".btn-main.active")).map(b => b.dataset.groupName);
+    }
+
+    function updateActionsVisibility(){
+
+      const hasGroups =
+        getSelectedGroups().length > 0;
+
+      const hasModes =
+        btnFormulaIzena.classList.contains("active") ||
+        btnIzenaFormula.classList.contains("active");
+
+      actionsPanel.hidden = !(hasGroups && hasModes);
     }
 
     // =========================================================
@@ -297,6 +383,9 @@
     // SORTU BERRIA
     // =========================================================
     document.getElementById("sortu").addEventListener("click", () => {
+
+      document.getElementById("namingNote").style.display = "block";
+
       scoreBox.classList.remove("show");
       scoreBox.innerHTML = "";
 
@@ -314,12 +403,15 @@
       current.nameToFormula = [];
 
       if(selectedGroups.length === 0 || (!wantA && !wantB)){
+        document.getElementById("namingNote").style.display = "none";
         exerciseList.innerHTML = `
           <p class="note" style="color:#b45309;">
             Aukeratu gutxienez talde bat eta gutxienez modu bat.
           </p>`;
         return;
       }
+
+      setOptionsPanel(false);
 
       if(wantA) current.formulaToName = buildSetForMode("formulaToName", n, selectedGroups);
       if(wantB) current.nameToFormula  = buildSetForMode("nameToFormula",  n, selectedGroups);
@@ -341,21 +433,63 @@
 
             <div class="field">
               <div class="label">Sistematikoa</div>
-              <input class="answer" type="text" data-kind="sist" placeholder="Idatzi hemen..." />
+              <div class="answerRow">
+                <input class="answer" type="text" data-kind="sist" placeholder="Idatzi hemen..." />
+                <button class="checkOne" type="button">✓</button>
+              </div>
             </div>
 
             <div class="field">
               <div class="label">Stock</div>
-              <input class="answer" type="text" data-kind="stock" placeholder="Idatzi hemen..." />
+
+              <div class="answerRow">
+                <input
+                  class="answer"
+                  type="text"
+                  data-kind="stock"
+                  placeholder="Idatzi hemen..."
+                />
+
+                <button class="checkOne" type="button">
+                  ✓
+                </button>
+              </div>
             </div>
 
             <div class="field">
               <div class="label">Tradizionala</div>
-              <input class="answer" type="text" data-kind="trad" placeholder="Idatzi hemen..." />
+
+              <div class="answerRow">
+                <input
+                  class="answer"
+                  type="text"
+                  data-kind="trad"
+                  placeholder="Idatzi hemen..."
+                />
+
+                <button class="checkOne" type="button">
+                  ✓
+                </button>
+              </div>
             </div>
           `;
 
           div.querySelectorAll("input.answer").forEach(inp => {
+            const btn = inp.parentElement.querySelector(".checkOne");
+            if(btn){
+              btn.addEventListener("click", () => {
+                const kind = inp.dataset.kind;
+
+                if(kind === "formula"){
+                  checkSingleInput(inp, item.formula, "formula");
+                }else{
+                  checkSingleInput(inp, item[kind], "name");
+                  if(!inp.classList.contains("ok")){
+                    addHelpLink(inp.closest(".field"), item.link);
+                  }
+                }
+              });
+            }
             inp.addEventListener("input", () => resetInputState(inp));
             // ✅ NUEVO: feedback inmediato sin pistas
             inp.addEventListener("blur", () => {
@@ -388,16 +522,46 @@
 
             <div class="field">
               <div class="label">Formula</div>
-              <input class="answer" type="text" data-kind="formula" placeholder="Adib.: FeH2" />
+
+              <div class="answerRow">
+                <input
+                  class="answer"
+                  type="text"
+                  data-kind="formula"
+                  placeholder="Adib.: FeH2"
+                />
+
+                <button class="checkOne" type="button">
+                  ✓
+                </button>
+              </div>
             </div>
           `;
 
           div.querySelectorAll("input.answer").forEach(inp => {
+
+            const btn = inp.parentElement.querySelector(".checkOne");
+
+            if(btn){
+
+              btn.addEventListener("click", () => {
+
+                checkSingleInput(inp, item.formula, "formula");
+
+                if(!inp.classList.contains("ok")){
+                  addHelpLink(inp.closest(".field"), item.link);
+                }
+
+              });
+
+            }
+
             inp.addEventListener("input", () => resetInputState(inp));
-            // ✅ NUEVO: feedback inmediato sin pistas
+
             inp.addEventListener("blur", () => {
               instantCheckInput(inp, item.formula, "formula");
             });
+
           });
 
           exerciseList.appendChild(div);
@@ -671,6 +835,8 @@
       }
 
       lastFailed = { formulaToName: [], nameToFormula: [] };
+
+
 
       // Registrar el service worker
       if ("serviceWorker" in navigator) {

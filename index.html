@@ -5,167 +5,343 @@
   <title>Formulazio Ez Organikoa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#2563eb" />
 
-  <!-- Móvil / iOS -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Formulazio Ez Organikoa" />
 
-  <!-- Iconos -->
   <link rel="icon" href="icono-192.png" />
   <link rel="apple-touch-icon" href="icono-192.png" />
 
-  <!-- Licencia / autor -->
   <link rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/" />
   <meta name="license" content="CC BY-NC 4.0" />
   <meta name="author" content="@Fisikasi" />
 
-  <!-- Estilos -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
+
     <h1>Formulazio Ez Organikoa</h1>
 
-    <div class="topbar">
+    <!-- INSTALAR APP -->
+    <div class="row" style="margin-top:14px;">
       <button id="installBtn" class="btn-install" type="button">
         Aplikazioa Instalatu
       </button>
-
-      <label>
-        Galdera kopurua (1–10)
-        <select id="numQuestions">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option selected>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-        </select>
-      </label>
-
-      <label>
-        Zailtasuna
-        <select id="difficulty">
-          <option value="erreza">Erreza</option>
-          <option value="normal" selected>Normal</option>
-          <option value="zaila">Zaila</option>
-        </select>
-      </label>
     </div>
 
-    <div class="sectionTitle">
-      <span>KONPOSATU BITARRAK</span>
+    <!-- TOGGLE PANEL -->
+    <div class="optionsToggleWrap">
+      <button
+        id="optionsToggle"
+        class="btn-options-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="optionsPanel"
+      >
+        Aukeren panela ▼
+      </button>
     </div>
-    <div class="row" id="binaryButtons"></div>
 
-    <div class="sectionTitle">
-      <span>KONPOSATU HIRUTARRAK</span>
-    </div>
-    <div class="row" id="ternaryButtons"></div>
+    <!-- PANEL GENERAL -->
+    <div id="optionsPanel" class="optionsPanel" hidden>
 
-    <div class="sectionTitle">
-      <span>GALDERA MOTAK</span>
-    </div>
+      <!-- ===================================== -->
+      <!-- KONPOSATUAK -->
+      <!-- ===================================== -->
+      <div class="section">
 
-    <div class="section" style="margin-top:8px;">
-      <div class="row">
-        <button id="btn-formula-izena" class="btn btn-mode" type="button">
-          Formulatik Izena
+        <button
+          id="toggleCompounds"
+          class="btn btn-collapse"
+          type="button"
+          aria-expanded="false"
+          aria-controls="compoundsPanel"
+        >
+          Konposatuak aukeratu ▼
         </button>
 
-        <button id="btn-izena-formula" class="btn btn-mode" type="button">
-          Izenetik formulara
+        <div id="compoundsPanel" class="subOptionsPanel" hidden>
+
+          <!-- KONPOSATU BITARRAK -->
+          <div class="section">
+
+            <button
+              id="toggleBinary"
+              class="btn btn-collapse btn-subcollapse"
+              type="button"
+              aria-expanded="false"
+              aria-controls="binaryPanel"
+            >
+              Konposatu bitarrak ▼
+            </button>
+
+            <div id="binaryPanel" class="subOptionsPanel" hidden>
+              <div class="row" id="binaryButtons"></div>
+            </div>
+
+          </div>
+
+          <!-- KONPOSATU HIRUTARRAK -->
+          <div class="section">
+
+            <button
+              id="toggleTernary"
+              class="btn btn-collapse btn-subcollapse"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ternaryPanel"
+            >
+              Konposatu hirutarrak ▼
+            </button>
+
+            <div id="ternaryPanel" class="subOptionsPanel" hidden>
+              <div class="row" id="ternaryButtons"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================== -->
+      <!-- FROGAREN EZAUGARRIAK -->
+      <!-- ===================================== -->
+      <div class="section">
+
+        <button
+          id="toggleExam"
+          class="btn btn-collapse"
+          type="button"
+          aria-expanded="false"
+          aria-controls="examPanel"
+        >
+          Frogaren ezaugarriak aukeratu ▼
         </button>
+
+        <div id="examPanel" class="subOptionsPanel" hidden>
+
+          <!-- GALDERA MOTAK -->
+          <div class="sectionTitle">
+            <span>GALDERA MOTAK</span>
+          </div>
+
+          <div class="section" style="margin-top:8px;">
+            <div class="row">
+
+              <button
+                id="btn-formula-izena"
+                class="btn btn-mode"
+                type="button"
+              >
+                Formulatik Izena
+              </button>
+
+              <button
+                id="btn-izena-formula"
+                class="btn btn-mode"
+                type="button"
+              >
+                Izenetik formulara
+              </button>
+
+            </div>
+          </div>
+
+          <!-- GALDERA KOPURUA + ZORROZTASUNA -->
+          <div class="section" style="margin-top:14px;">
+
+            <div class="topbar">
+
+              <label>
+                Galdera kopurua (1–10)
+
+                <select id="numQuestions">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option selected>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </select>
+
+              </label>
+
+              <label>
+                Zuzenketarako Zorroztasuna
+
+                <select id="difficulty">
+                  <option value="erreza">Erreza</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="zaila">Zaila</option>
+                </select>
+
+              </label>
+
+            </div>
+
+          </div>
+
+          <!-- FEEDBACK -->
+          <div class="section" style="margin-top:10px;">
+
+            <div class="row">
+
+              <label
+                style="
+                  border:none;
+                  background:transparent;
+                  box-shadow:none;
+                  padding:0;
+                  gap:10px;
+                  font-weight:900;
+                  color:#111827;
+                "
+              >
+                <input id="instantFeedback" type="checkbox" />
+                Feedback berehala (idaztean)
+              </label>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
+
     </div>
 
-    <div class="section" style="margin-top:10px;">
-      <div class="row">
-        <label style="border:none;background:transparent;box-shadow:none;padding:0;gap:10px;font-weight:900;color:#111827;">
-          <input id="instantFeedback" type="checkbox" />
-          Feedback berehala (idaztean)
-        </label>
-      </div>
-    </div>
+    <!-- ===================================== -->
+    <!-- BOTONES PRINCIPALES -->
+    <!-- ===================================== -->
+    <div id="actionsPanel" class="section" hidden>
 
-    <div class="section">
       <div class="row">
-        <button id="sortu" class="btn-action btn-berria" type="button">Sortu berria</button>
-        <button id="konprobatu" class="btn-action btn-konprobatu" type="button">Konprobatu</button>
-        <button id="repeatFails" class="btn-action btn-berria" type="button" style="display:none;">
+
+        <button
+          id="sortu"
+          class="btn-action btn-berria"
+          type="button"
+        >
+          Sortu berria
+        </button>
+
+        <button
+          id="konprobatu"
+          class="btn-action btn-konprobatu"
+          type="button"
+        >
+          Konprobatu
+        </button>
+
+        <button
+          id="repeatFails"
+          class="btn-action btn-berria"
+          type="button"
+          style="display:none;"
+        >
           Berriro saiatu huts egindakoekin
         </button>
+
       </div>
 
       <div class="row" style="margin-top:12px;">
-        <button id="downloadTest" class="btn-action btn-berria" type="button">
+
+        <button
+          id="downloadTest"
+          class="btn-action btn-berria"
+          type="button"
+        >
           Deskargatu froga
         </button>
+
       </div>
+
     </div>
 
+    <!-- SCORE -->
     <div id="scoreBox" class="scoreBox" aria-live="polite"></div>
 
+    <!-- EJERCICIOS -->
     <div class="work">
-      <p class="note">
+
+      <p id="namingNote" class="note" style="display:none;">
         <b>Izendatzen ez denean:</b>
         Konposaturen bat izendapen mota jakin batean ez bada izendatzen,
         <b>“Ez da izendatzen”</b> edo <b>“-”</b> erantzunak onartzen dira.
       </p>
 
       <div id="exerciseList"></div>
+
     </div>
 
+    <!-- FOOTER -->
     <footer>
+
       <p style="margin:0 0 8px;">
-        <a href="https://creativecommons.org/licenses/by-nc/4.0/"
-           target="_blank"
-           rel="license noopener">
+
+        <a
+          href="https://creativecommons.org/licenses/by-nc/4.0/"
+          target="_blank"
+          rel="license noopener"
+        >
           <img
             alt="Creative Commons Lizentzia"
             style="border-width:0"
             src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"
           />
         </a>
+
       </p>
 
       <p style="margin:0;">
+
         Lan hau <strong>@Fisikasi</strong>-rena da, eta
-        <a href="https://creativecommons.org/licenses/by-nc/4.0/"
-           target="_blank"
-           rel="license noopener">
+
+        <a
+          href="https://creativecommons.org/licenses/by-nc/4.0/"
+          target="_blank"
+          rel="license noopener"
+        >
           Creative Commons Aitortu–EzKomertziala 4.0 (CC BY-NC 4.0)
         </a>
+
         lizentziapean dago.
+
       </p>
 
-      <a href="https://www.youtube.com/fisikasi" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://www.youtube.com/fisikasi"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
         <img
           class="ytImg"
           src="https://yt3.googleusercontent.com/Iq9miG7pFzomX8IhLvt_2MjJkADNFFNLSNR1dGceqN1NUFIEdsiogBMrR1KBq2H855ncftGYew=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
           alt="Canal de YouTube Fisikasi"
         />
+
       </a>
+
     </footer>
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
-  <!-- Primero los datos -->
   <script src="compounds.js"></script>
-
-  <!-- Después la lógica -->
   <script src="app.js"></script>
+
 </body>
 </html>

@@ -1,339 +1,944 @@
-body{ font-family: Arial, Helvetica, sans-serif; background:#f4f6fa; padding:40px; }
-    .container{
-      max-width:1100px; margin:auto; background:white; padding:30px;
-      border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,.08);
-    }
-    h1{ margin:0 0 10px 0; font-size:22px; text-align:center; }
+/* =========================================================
+   1. VARIABLES GLOBALES
+========================================================= */
 
-    .topbar{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-    .topbar label{
-      font-size:14px; color:#374151; font-weight:800;
-      display:flex; align-items:center; gap:10px;
-      padding:10px 12px; border:1px solid #e5e7eb; background:#fff; border-radius:12px;
-    }
-    select{
-      padding:8px 10px; border-radius:10px; border:2px solid #d1d5db;
-      background:white; font-weight:800; cursor:pointer;
-    }
+:root{
+  --bg:#f7fbfa;
+  --ink:#17212b;
+  --muted:#6b7280;
 
-    .row{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+  --primary:#16a085;
+  --primary-dark:#0f766e;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --warning:#f59e0b;
 
-    .section{ margin-top:14px; }
-    .work{ margin-top:22px; padding-top:18px; border-top:1px solid #e5e7eb; }
+  --accent:#f6c453;
+  --soft:#f4fffc;
+  --white:#ffffff;
+  --line:#e5e7eb;
 
-    .note{ margin:0 0 12px 0; color:#6b7280; font-size:13px; text-align:center; line-height:1.35; }
-    .note b{ color:#111827; }
+  --radius-sm:12px;
+  --radius-md:18px;
+  --radius-lg:28px;
+  --radius-xl:36px;
 
-    .blockTitle{
-      margin:16px 0 10px 0; font-size:14px; font-weight:900; color:#111827;
-      text-align:left;
-    }
-
-    .sectionTitle{
-      margin:14px 0 10px 0;
-      text-align:center;
-      font-weight:1000;
-      letter-spacing:.8px;
-      font-size:12px;
-      color:#111827;
-      text-transform:uppercase;
-    }
-    .sectionTitle span{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#f3f4f6;
-      border:1px solid #e5e7eb;
-    }
-    .topbar{
-      gap:16px;
-    }
-
-    .btn-install{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 16px;
-      border-radius:12px;
-      border:none;
-      background:#2563eb;
-      color:white;
-      font-weight:900;
-      font-size:14px;
-      cursor:pointer;
-      box-shadow:0 10px 22px rgba(37,99,235,.20);
-      white-space:nowrap;
-    }
-    .btn-install:hover{
-      filter:brightness(1.05);
-    }
-    .btn-install:disabled{
-      opacity:.65;
-      cursor:not-allowed;
-    }
-    .btn{
-      padding:12px 16px; border-radius:12px; border:2px solid #d1d5db;
-      background:white; cursor:pointer; font-size:15px; transition: all .2s ease;
-      white-space:nowrap; user-select:none;
-    }
-    .btn:hover{ filter: brightness(1.01); transform: translateY(-1px); }
-    .btn:active{ transform: translateY(0); }
-
-    .btn-main.active{ background:#2563eb; border-color:#2563eb; color:white; }
-
-    .btn-mode{
-      border-color:#111827;
-      background:#111827;
-      color:white;
-      font-weight:1000;
-      box-shadow: 0 10px 22px rgba(17,24,39,.18);
-    }
-    .btn-mode.active{
-      background:#16a34a;
-      border-color:#16a34a;
-      color:white;
-      box-shadow: 0 10px 22px rgba(22,163,74,.22);
-    }
-
-    .btn-action{
-      padding:16px 26px; font-size:17px; font-weight:900;
-      border:none; border-radius:12px; cursor:pointer;
-      transition: filter .2s ease, transform .05s ease;
-      box-shadow: 0 12px 26px rgba(0,0,0,.10);
-    }
-    .btn-action:active{ transform: scale(0.99); }
-    .btn-action:hover{ filter: brightness(1.03); }
-    .btn-berria{ background:#6b7280; color:white; }
-    .btn-konprobatu{ background:#6ee7b7; color:#064e3b; }
-
-    .exercise{
-      display:grid; grid-template-columns: 140px 1fr 1fr 1fr;
-      gap:10px; align-items:start; padding:12px;
-      border:1px solid #e5e7eb; border-radius:14px; margin-bottom:10px; background:#fff;
-    }
-    .exercise.is-name-to-formula{ grid-template-columns: 1fr 220px; }
-
-    .chip{
-      font-weight:900; font-size:16px; padding:10px 10px; border-radius:12px;
-      background:#f9fafb; border:1px solid #e5e7eb; text-align:center;
-    }
-    .nameBox{ text-align:left; line-height:1.25; padding:12px 14px; }
-
-    .field{ display:flex; flex-direction:column; gap:6px; }
-    .label{ font-size:12px; color:#6b7280; padding-left:4px; font-weight:800; }
-    input.answer{
-      width:100%; padding:10px 12px; border-radius:12px; border:2px solid #d1d5db;
-      outline:none; font-size:14px; transition: border-color .2s ease, background .2s ease;
-    }
-
-    .meta{ font-size:12px; color:#6b7280; margin-top:6px; font-weight:900; display:none; }
-    .meta.show{ display:block; }
-
-    .ok{ border-color:#16a34a !important; background:#ecfdf5 !important; }
-    .bad{ border-color:#dc2626 !important; background:#fef2f2 !important; }
-
-    .correct-hint{ font-size:12px; color:#374151; padding-left:6px; margin-top:2px; font-weight:900; }
-
-    .helpLink{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-top:6px;
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid #fecaca;
-      background:#fff1f2;
-      color:#991b1b;
-      font-weight:1000;
-      font-size:12px;
-      text-decoration:none;
-      width:max-content;
-      cursor:pointer;
-    }
-    .helpLink:hover{ filter: brightness(0.98); transform: translateY(-1px); }
-    .helpLink:active{ transform: translateY(0); }
-    .helpLink svg{ width:14px; height:14px; flex:0 0 auto; }
-
-    /* ---------- SCORE “VISTOSO” ---------- */
-    .scoreBox{
-      margin: 16px auto 0 auto;
-      max-width: 860px;
-      border:1px solid #e5e7eb;
-      background:#ffffff;
-      border-radius:16px;
-      padding:14px;
-      color:#111827;
-      display:none;
-      box-shadow: 0 14px 34px rgba(0,0,0,.08);
-    }
-    .scoreBox.show{ display:block; }
-
-    .scoreGrid{
-      display:grid;
-      grid-template-columns: 1fr 220px;
-      gap:12px;
-      align-items:center;
-    }
-    @media (max-width: 720px){
-      .scoreGrid{ grid-template-columns: 1fr; }
-    }
-
-    .scoreHeader{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .badge{
-      padding:6px 10px; border-radius:999px; font-weight:900; font-size:12px;
-      border:1px solid #e5e7eb; background:white;
-    }
-    .badge.good{ border-color:#bbf7d0; background:#ecfdf5; color:#065f46; }
-    .badge.mid{ border-color:#fde68a; background:#fffbeb; color:#92400e; }
-    .badge.bad{ border-color:#fecaca; background:#fef2f2; color:#991b1b; }
-
-    .bar{
-      margin-top:10px;
-      height:12px;
-      border-radius:999px;
-      background:#f3f4f6;
-      border:1px solid #e5e7eb;
-      overflow:hidden;
-    }
-    .bar > div{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, #dc2626, #f59e0b, #16a34a);
-      transition: width .35s ease;
-    }
-
-    .ringWrap{
-      display:flex; justify-content:center; align-items:center;
-      border:1px solid #e5e7eb; border-radius:16px;
-      padding:10px;
-      background:#f9fafb;
-    }
-    .ring{ width:160px; height:160px; }
+  --shadow-soft:0 18px 44px rgba(17,24,39,.07);
+  --shadow-primary:0 24px 60px rgba(15,118,110,.14);
+  --shadow-dark:0 14px 30px rgba(17,24,39,.18);
+}
 
 
- /* ---------- FOOTER CC + IMAGEN ---------- */
-    footer{
-      margin-top:22px;
-      padding-top:14px;
-      border-top:1px solid #e5e7eb;
-      text-align:center;
-      color:#6b7280;
-      font-size:12px;
-      line-height:1.4;
-    }
-    .ccBox{
-      display:inline-block;
-      background:#f9fafb;
-      border:1px solid #e5e7eb;
-      padding:10px 12px;
-      border-radius:14px;
-      font-weight:800;
-      color:#111827;
-    }
-    .ytImg{
-      margin:12px auto 0;
-      max-width:520px;
-      width:100%;
-      border-radius:16px;
-      border:1px solid #e5e7eb;
-      display:block;
-      box-shadow:0 12px 26px rgba(0,0,0,.08);
-      object-fit:cover;
-    }
+/* =========================================================
+   2. BASE
+========================================================= */
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  padding:32px 18px;
+  font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, #e0fff8 0, transparent 34%),
+    radial-gradient(circle at top right, #fff3c4 0, transparent 28%),
+    var(--bg);
+}
+
+.container{
+  max-width:1120px;
+  margin:auto;
+}
+
+h1{
+  margin:0 0 28px;
+  padding:54px 24px;
+  text-align:center;
+  border-radius:var(--radius-xl);
+  font-size:clamp(2.4rem, 6vw, 4.8rem);
+  letter-spacing:-.06em;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at top left, #dffff7, transparent 35%),
+    radial-gradient(circle at bottom right, #fff0bc, transparent 32%),
+    var(--white);
+  box-shadow:var(--shadow-primary);
+}
+
+h1::before{
+  content:"KIMIKA EZ ORGANIKOA EUSKARAZ";
+  display:block;
+  margin-bottom:10px;
+  font-size:.9rem;
+  letter-spacing:.12em;
+  color:var(--muted);
+  font-weight:900;
+}
 
 
+/* =========================================================
+   3. LAYOUT GENERAL
+========================================================= */
 
-    @media (max-width: 920px){
-      .exercise{ grid-template-columns: 140px 1fr; }
-      .exercise.is-name-to-formula{ grid-template-columns: 1fr; }
-    }
+.row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-    /* =========================================
-      BOTÓN DESKARGATU FROGA
-    ========================================= */
+.section,
+.work,
+.optionsPanel,
+.scoreBox{
+  border:1px solid rgba(229,231,235,.9);
+  border-radius:var(--radius-lg);
+  background:rgba(255,255,255,.88);
+  box-shadow:var(--shadow-soft);
+  backdrop-filter:blur(14px);
+}
 
-    #downloadTest{
-      background: linear-gradient(135deg, #111111, #000000);
+.section{
+  margin-top:14px;
+  padding:22px;
+}
 
-      color: white;
-      border: 1px solid #2b2b2b;
+.work{
+  margin-top:22px;
+  padding:28px;
+}
 
-      font-weight: 1000;
-      letter-spacing: .5px;
+.optionsPanel{
+  margin-top:10px;
+  padding:28px;
+}
 
-      box-shadow:
-        0 14px 28px rgba(0,0,0,.35),
-        0 6px 14px rgba(0,0,0,.28);
+.optionsPanel[hidden],
+.subOptionsPanel[hidden]{
+  display:none;
+}
 
-      position: relative;
-      overflow: hidden;
+.subOptionsPanel{
+  margin-top:12px;
+}
 
-      transition:
-        transform .18s ease,
-        filter .18s ease,
-        box-shadow .18s ease;
+.optionsToggleWrap{
+  display:flex;
+  justify-content:center;
+  margin:14px 0;
+}
 
-      text-transform: uppercase;
-    }
 
-    /* brillo metálico */
-    #downloadTest::before{
-      content:"";
+/* =========================================================
+   4. TEXTOS AUXILIARES
+========================================================= */
 
-      position:absolute;
-      top:0;
-      left:-120%;
+.note{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:14px;
+  text-align:center;
+  line-height:1.4;
+}
 
-      width:70%;
-      height:100%;
+.note b{
+  color:var(--ink);
+}
 
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,.25),
-        transparent
-      );
+.blockTitle{
+  margin:16px 0 10px;
+  font-size:14px;
+  font-weight:900;
+  color:var(--ink);
+}
 
-      transform: skewX(-25deg);
+.sectionTitle{
+  margin:14px 0 10px;
+  text-align:center;
+  font-weight:1000;
+  letter-spacing:.8px;
+  font-size:12px;
+  color:var(--ink);
+  text-transform:uppercase;
+}
 
-      transition:left .7s ease;
-    }
+.sectionTitle span{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#f3f4f6;
+  border:1px solid var(--line);
+}
 
-    #downloadTest:hover::before{
-      left:140%;
-    }
 
-    #downloadTest:hover{
-      transform: translateY(-2px) scale(1.02);
+/* =========================================================
+   5. FORMULARIOS
+========================================================= */
 
-      filter: brightness(1.12);
+.topbar{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
 
-      box-shadow:
-        0 20px 36px rgba(0,0,0,.45),
-        0 10px 18px rgba(0,0,0,.35);
-    }
+.topbar label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  background:var(--white);
+  color:#374151;
+  font-size:14px;
+  font-weight:800;
+}
 
-    #downloadTest:active{
-      transform: scale(.98);
-    }
+select,
+input.answer{
+  border:1.5px solid #d1d5db;
+  border-radius:16px;
+  background:var(--white);
+  outline:none;
+  transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
 
-    #downloadTest::after{
-      content:"⬇";
+select{
+  padding:10px 12px;
+  font-weight:800;
+  cursor:pointer;
+}
 
-      margin-left:10px;
+input.answer{
+  width:100%;
+  padding:10px 12px;
+  font-size:14px;
+}
 
-      font-size:16px;
-      font-weight:900;
-    }
+select:focus,
+input.answer:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(22,160,133,.12);
+}
+
+.answerRow{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.answerRow input.answer{
+  flex:1;
+}
+
+
+/* =========================================================
+   BOTONES PREMIUM
+========================================================= */
+
+.btn,
+.btn-action,
+.btn-install,
+.btn-options-toggle,
+.btn-collapse,
+.checkOne{
+  position:relative;
+  overflow:hidden;
+
+  border:none;
+  outline:none;
+
+  cursor:pointer;
+
+  transition:
+    transform .18s ease,
+    box-shadow .22s ease,
+    background .22s ease,
+    border-color .22s ease,
+    opacity .22s ease;
+
+  font-family:inherit;
+}
+
+.btn:hover,
+.btn-action:hover,
+.btn-install:hover,
+.btn-options-toggle:hover,
+.btn-collapse:hover,
+.checkOne:hover{
+  transform:translateY(-2px);
+}
+
+.btn:active,
+.btn-action:active,
+.btn-install:active{
+  transform:scale(.98);
+}
+
+
+/* =========================================================
+   BOTONES NORMALES
+========================================================= */
+
+.btn{
+  padding:13px 18px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.78);
+
+  border:1px solid rgba(255,255,255,.7);
+
+  backdrop-filter:blur(14px);
+
+  color:#17212b;
+
+  font-size:15px;
+  font-weight:800;
+
+  box-shadow:
+    0 10px 24px rgba(15,23,42,.05),
+    inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+
+/* Hover suave elegante */
+
+.btn:hover{
+  background:#ffffff;
+
+  box-shadow:
+    0 16px 34px rgba(15,23,42,.08),
+    inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+
+/* =========================================================
+   BOTONES ACTIVOS
+========================================================= */
+
+.btn-main.active,
+.btn-mode.active{
+  background:
+    linear-gradient(
+      135deg,
+      #dff7e8,
+      #f2fff7
+    );
+
+  color:#166534;
+
+  border:1px solid #8ff0bc;
+
+  box-shadow:
+    0 14px 34px rgba(22,163,74,.18),
+    inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+
+/* =========================================================
+   BOTONES COLAPSABLES
+========================================================= */
+
+.btn-collapse,
+.btn-options-toggle{
+  padding:14px 22px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.88),
+      rgba(255,255,255,.72)
+    );
+
+  color:#17212b;
+
+  border:1px solid rgba(255,255,255,.8);
+
+  backdrop-filter:blur(16px);
+
+  font-weight:900;
+
+  box-shadow:
+    0 12px 30px rgba(15,23,42,.08),
+    inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+.btn-collapse:hover,
+.btn-options-toggle:hover{
+  background:#ffffff;
+}
+
+
+/* =========================================================
+   SUBCOLLAPSE
+========================================================= */
+
+.btn-subcollapse{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+
+  box-shadow:none;
+
+  color:#374151;
+}
+
+.btn-subcollapse[aria-expanded="true"]{
+  background:#ffffff;
+
+  border-color:#cbd5e1;
+
+  color:#111827;
+
+  box-shadow:
+    0 10px 24px rgba(15,23,42,.06);
+}
+
+
+/* =========================================================
+   BOTONES GRANDES DE ACCIÓN
+========================================================= */
+
+.btn-action{
+  padding:16px 28px;
+
+  border-radius:20px;
+
+  font-size:16px;
+  font-weight:900;
+
+  letter-spacing:.01em;
+}
+
+
+/* =========================================================
+   SORTU BERRIA
+========================================================= */
+
+.btn-berria{
+  background:
+    linear-gradient(
+      135deg,
+      #16a085,
+      #1abc9c
+    );
+
+  color:white;
+
+  box-shadow:
+    0 16px 34px rgba(22,160,133,.28);
+}
+
+.btn-berria:hover{
+  box-shadow:
+    0 22px 44px rgba(22,160,133,.36);
+}
+
+
+/* =========================================================
+   KONPROBATU
+========================================================= */
+
+.btn-konprobatu{
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #4f8cff
+    );
+
+  color:white;
+
+  box-shadow:
+    0 16px 34px rgba(37,99,235,.28);
+}
+
+.btn-konprobatu:hover{
+  box-shadow:
+    0 22px 44px rgba(37,99,235,.36);
+}
+
+
+/* =========================================================
+   APLIKAZIO INSTALATU
+========================================================= */
+
+.btn-install{
+  padding:14px 24px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #374151
+    );
+
+  color:white;
+
+  font-size:14px;
+  font-weight:1000;
+
+  letter-spacing:.04em;
+
+  box-shadow:
+    0 20px 44px rgba(17,24,39,.32);
+
+  position:relative;
+}
+
+
+/* Glow elegante */
+
+.btn-install::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,.18),
+      transparent
+    );
+
+  transform:translateX(-120%);
+  transition:transform .7s ease;
+}
+
+.btn-install:hover::before{
+  transform:translateX(120%);
+}
+
+
+/* =========================================================
+   DESKARGATU FROGA
+========================================================= */
+
+#downloadTest{
+  background:
+    linear-gradient(
+      135deg,
+      #ffb347,
+      #ffcc73
+    );
+
+  color:#17212b;
+
+  border:none;
+
+  font-weight:1000;
+
+  letter-spacing:.03em;
+
+  box-shadow:
+    0 20px 44px rgba(245,158,11,.28);
+
+  position:relative;
+}
+
+#downloadTest:hover{
+  box-shadow:
+    0 26px 54px rgba(245,158,11,.38);
+}
+
+
+/* Brillo */
+
+#downloadTest::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:-120%;
+
+  width:70%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  transform:skewX(-25deg);
+
+  transition:left .7s ease;
+}
+
+#downloadTest:hover::before{
+  left:140%;
+}
+
+#downloadTest::after{
+  content:"⬇";
+
+  margin-left:10px;
+
+  font-size:16px;
+  font-weight:1000;
+}
+
+
+/* =========================================================
+   BOTÓN ✓ CORRECCIÓN INDIVIDUAL
+========================================================= */
+
+.checkOne{
+  width:42px;
+  height:42px;
+
+  border-radius:14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f3f4f6
+    );
+
+  color:#17212b;
+
+  font-size:16px;
+  font-weight:1000;
+
+  border:1px solid #e5e7eb;
+
+  box-shadow:
+    0 8px 18px rgba(15,23,42,.06);
+}
+
+.checkOne:hover{
+  background:#ffffff;
+}
+
+
+/* =========================================================
+   8. EJERCICIOS
+========================================================= */
+
+.exercise{
+  display:grid;
+  grid-template-columns:140px 1fr 1fr 1fr;
+  gap:10px;
+  align-items:start;
+  margin-bottom:10px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:linear-gradient(145deg, #ffffff, #f6fffc);
+  box-shadow:0 14px 30px rgba(17,24,39,.055);
+}
+
+.exercise.is-name-to-formula{
+  grid-template-columns:1fr 240px;
+}
+
+.chip{
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:#fbfefd;
+  color:var(--ink);
+  text-align:center;
+  font-size:16px;
+  font-weight:900;
+}
+
+.nameBox{
+  text-align:left;
+  line-height:1.25;
+  padding:12px 14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.label{
+  padding-left:4px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+}
+
+.meta{
+  display:none;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:900;
+}
+
+.meta.show{
+  display:block;
+}
+
+
+/* =========================================================
+   9. ESTADOS DE CORRECCIÓN
+========================================================= */
+
+.ok{
+  border-color:var(--success) !important;
+  background:#ecfdf5 !important;
+}
+
+.bad{
+  border-color:var(--danger) !important;
+  background:#fff1f2 !important;
+}
+
+.correct-hint{
+  margin-top:2px;
+  padding-left:6px;
+  color:#374151;
+  font-size:12px;
+  font-weight:900;
+}
+
+.helpLink{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:max-content;
+  margin-top:6px;
+  padding:8px 10px;
+  border:1px solid #fecaca;
+  border-radius:999px;
+  background:#fff1f2;
+  color:#991b1b;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.helpLink:hover{
+  filter:brightness(.98);
+  transform:translateY(-1px);
+}
+
+.helpLink svg{
+  width:14px;
+  height:14px;
+  flex:0 0 auto;
+}
+
+
+/* =========================================================
+   10. SCORE
+========================================================= */
+
+.scoreBox{
+  display:none;
+  max-width:860px;
+  margin:16px auto 0;
+  padding:18px;
+  color:var(--ink);
+}
+
+.scoreBox.show{
+  display:block;
+}
+
+.scoreGrid{
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:12px;
+  align-items:center;
+}
+
+.scoreHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.badge{
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:white;
+  font-size:12px;
+  font-weight:900;
+}
+
+.badge.good{
+  border-color:#bbf7d0;
+  background:#ecfdf5;
+  color:#065f46;
+}
+
+.badge.mid{
+  border-color:#fde68a;
+  background:#fffbeb;
+  color:#92400e;
+}
+
+.badge.bad{
+  border-color:#fecaca;
+  background:#fff1f2;
+  color:#991b1b;
+}
+
+.bar{
+  height:12px;
+  margin-top:10px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#f3f4f6;
+}
+
+.bar > div{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--danger), var(--warning), var(--success));
+  transition:width .35s ease;
+}
+
+.ringWrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:#f9fafb;
+}
+
+.ring{
+  width:160px;
+  height:160px;
+}
+
+
+/* =========================================================
+   11. FOOTER
+========================================================= */
+
+footer{
+  margin-top:22px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.ytImg{
+  display:block;
+  width:100%;
+  max-width:520px;
+  margin:12px auto 0;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  object-fit:cover;
+  box-shadow:0 12px 26px rgba(0,0,0,.08);
+}
+
+
+/* =========================================================
+   12. RESPONSIVE
+========================================================= */
+
+@media (max-width:920px){
+  .exercise{
+    grid-template-columns:140px 1fr;
+  }
+
+  .exercise.is-name-to-formula{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:720px){
+  body{
+    padding:20px 12px;
+  }
+
+  h1{
+    padding:42px 18px;
+  }
+
+  .section,
+  .work,
+  .optionsPanel{
+    padding:18px;
+  }
+
+  .scoreGrid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 720px){
+
+  .exercise{
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .exercise .chip{
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .field{
+    width: 100%;
+  }
+
+  .answerRow{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 46px;
+    gap: 8px;
+  }
+
+  input.answer{
+    min-width: 0;
+  }
+
+  .checkOne{
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (max-width:520px){
+  .exercise{
+    grid-template-columns:1fr;
+  }
+
+  .btn-action{
+    width:100%;
+  }
+
+  .answerRow{
+    align-items:stretch;
+  }
+
+  .checkOne{
+    height:auto;
+  }
+}
