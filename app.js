@@ -30,6 +30,7 @@
 
     const btnFormulaIzena = document.getElementById("btn-formula-izena");
     const btnIzenaFormula = document.getElementById("btn-izena-formula");
+    const nomenclatureButtons = Array.from(document.querySelectorAll(".btn-nomenclature"));
 
     // ✅ NUEVO: toggle feedback inmediato + botón repetir fallos
     const instantFeedback = document.getElementById("instantFeedback");
@@ -52,15 +53,17 @@
     });
 
     document.querySelectorAll(".btn-mode").forEach(btn => {
-
       btn.addEventListener("click", () => {
-
         btn.classList.toggle("active");
-
         updateActionsVisibility();
-
       });
+    });
 
+    nomenclatureButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        updateActionsVisibility();
+      });
     });
 
     let current = { formulaToName: [], nameToFormula: [] };
@@ -163,18 +166,59 @@
       fieldEl.appendChild(a);
     }
 
-    function chooseRandomName(item){
-      const options = [
-        { key:"trad",  label:"Trad",  text:item.trad },
-        { key:"stock", label:"Stock", text:item.stock },
-        { key:"sist",  label:"Sist",  text:item.sist }
-      ].filter(o => normalizeName(o.text) && normalizeName(o.text) !== "ez da izendatzen");
+    const NOMENCLATURE_LABELS = {
+      sist: "Sistematikoa",
+      stock: "Stock",
+      trad: "Tradizionala"
+    };
+
+    function getSelectedNomenclatures(){
+      return nomenclatureButtons
+        .filter(btn => btn.classList.contains("active"))
+        .map(btn => btn.dataset.nomenclature);
+    }
+
+    function getNomenclaturesForItem(item, selectedKinds = getSelectedNomenclatures()){
+      const alwaysSistAndTrad =
+        item.groupName === "Hidruro Ez Metalikoak" ||
+        item.groupName === "Oxoazidoak";
+
+      // Salbuespena:
+      // Hidruro Ez Metalikoak eta Oxoazidoak ez dute Stock izendapenik.
+      // Horregatik, erabiltzailearen aukeraketa edozein dela ere,
+      // beti Sistematikoa + Tradizionala erabiltzen dira.
+      if(alwaysSistAndTrad){
+        return ["sist", "trad"];
+      }
+
+      return selectedKinds;
+    }
+
+    function availableNameOptions(item, allowedKinds = getSelectedNomenclatures()){
+      const effectiveKinds = getNomenclaturesForItem(item, allowedKinds);
+
+      return effectiveKinds
+        .map(key => ({
+          key,
+          label: NOMENCLATURE_LABELS[key],
+          text: item[key]
+        }))
+        .filter(o => normalizeName(o.text) && normalizeName(o.text) !== "ez da izendatzen");
+    }
+
+    function chooseRandomName(item, allowedKinds = getSelectedNomenclatures()){
+      const options = availableNameOptions(item, allowedKinds);
 
       if(options.length === 0){
-        return { kindKey:"trad", kindLabel:"Trad", text:"Ez da izendatzen" };
+        return null;
       }
+
       const chosen = options[Math.floor(Math.random()*options.length)];
-      return { kindKey: chosen.key, kindLabel: chosen.label, text: chosen.text };
+      return {
+        kindKey: chosen.key,
+        kindLabel: chosen.label,
+        text: chosen.text
+      };
     }
 
     // ✅ NUEVO: checks para feedback inmediato
@@ -319,34 +363,62 @@
         btnFormulaIzena.classList.contains("active") ||
         btnIzenaFormula.classList.contains("active");
 
-      actionsPanel.hidden = !(hasGroups && hasModes);
+      const hasNomenclatures = getSelectedNomenclatures().length > 0;
+
+      actionsPanel.hidden = !(hasGroups && hasModes && hasNomenclatures);
     }
 
     // =========================================================
     // BUILD SETS
     // =========================================================
     function buildSetForMode(mode, total, selectedGroups){
+      const allowedKinds = getSelectedNomenclatures();
       const k = selectedGroups.length;
       const counts = distributeEvenly(total, k);
 
       let collected = [];
       selectedGroups.forEach((gName, idx) => {
-        const dataset = GROUPS[gName] || [];
-        const need = counts[idx];
+        let dataset = (GROUPS[gName] || []).map(item => ({...item, groupName:gName}));
 
+        if(mode === "nameToFormula"){
+          dataset = dataset.filter(item => availableNameOptions(item, allowedKinds).length > 0);
+        }
+
+        const need = counts[idx];
         const picked = dataset.length >= need
           ? pickRandomNNoRepeat(dataset, need)
           : pickWithWrap(dataset, need);
 
-        collected = collected.concat(picked.map(item => ({...item, groupName:gName})));
+        collected = collected.concat(picked);
       });
 
       collected = shuffle(collected);
 
       if(mode === "nameToFormula"){
-        collected = collected.map(item => ({ ...item, shown: chooseRandomName(item) }));
+        collected = collected
+          .map(item => ({ ...item, shown: chooseRandomName(item, allowedKinds) }))
+          .filter(item => item.shown);
       }
       return collected;
+    }
+
+    function renderNameFields(item, withButtons = true){
+      const allowedKinds = getNomenclaturesForItem(item);
+
+      return allowedKinds.map(kind => {
+        const label = NOMENCLATURE_LABELS[kind];
+        const button = withButtons ? '<button class="checkOne" type="button">✓</button>' : '';
+
+        return `
+          <div class="field">
+            <div class="label">${label}</div>
+            <div class="answerRow">
+              <input class="answer" type="text" data-kind="${kind}" placeholder="Idatzi hemen..." />
+              ${button}
+            </div>
+          </div>
+        `;
+      }).join("");
     }
 
     // =========================================================
@@ -394,6 +466,7 @@
       lastFailed = { formulaToName: [], nameToFormula: [] };
 
       const selectedGroups = getSelectedGroups();
+      const selectedNomenclatures = getSelectedNomenclatures();
       const wantA = btnFormulaIzena.classList.contains("active");
       const wantB = btnIzenaFormula.classList.contains("active");
       const n = Math.max(1, Math.min(10, parseInt(numSel.value, 10) || 5));
@@ -402,11 +475,11 @@
       current.formulaToName = [];
       current.nameToFormula = [];
 
-      if(selectedGroups.length === 0 || (!wantA && !wantB)){
+      if(selectedGroups.length === 0 || (!wantA && !wantB) || selectedNomenclatures.length === 0){
         document.getElementById("namingNote").style.display = "none";
         exerciseList.innerHTML = `
           <p class="note" style="color:#b45309;">
-            Aukeratu gutxienez talde bat eta gutxienez modu bat.
+            Aukeratu gutxienez talde bat, galdera mota bat eta izendapen bat.
           </p>`;
         return;
       }
@@ -430,49 +503,10 @@
 
           div.innerHTML = `
             <div class="chip">${item.formula}</div>
-
-            <div class="field">
-              <div class="label">Sistematikoa</div>
-              <div class="answerRow">
-                <input class="answer" type="text" data-kind="sist" placeholder="Idatzi hemen..." />
-                <button class="checkOne" type="button">✓</button>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="label">Stock</div>
-
-              <div class="answerRow">
-                <input
-                  class="answer"
-                  type="text"
-                  data-kind="stock"
-                  placeholder="Idatzi hemen..."
-                />
-
-                <button class="checkOne" type="button">
-                  ✓
-                </button>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="label">Tradizionala</div>
-
-              <div class="answerRow">
-                <input
-                  class="answer"
-                  type="text"
-                  data-kind="trad"
-                  placeholder="Idatzi hemen..."
-                />
-
-                <button class="checkOne" type="button">
-                  ✓
-                </button>
-              </div>
-            </div>
+            ${renderNameFields(item, true)}
           `;
+
+          div.style.gridTemplateColumns = `140px repeat(${getNomenclaturesForItem(item).length}, minmax(0, 1fr))`;
 
           div.querySelectorAll("input.answer").forEach(inp => {
             const btn = inp.parentElement.querySelector(".checkOne");
@@ -633,7 +667,8 @@
           if(difficulty === "zaila"){
             if(results.every(Boolean)) earned += 1;
           }else{
-            earned += results.filter(Boolean).length * (1/3);
+            const pointsPerInput = results.length ? (1 / results.length) : 0;
+            earned += results.filter(Boolean).length * pointsPerInput;
           }
         }
 
@@ -770,22 +805,10 @@
 
           div.innerHTML = `
             <div class="chip">${item.formula}</div>
-
-            <div class="field">
-              <div class="label">Sistematikoa</div>
-              <input class="answer" type="text" data-kind="sist" placeholder="Idatzi hemen..." />
-            </div>
-
-            <div class="field">
-              <div class="label">Stock</div>
-              <input class="answer" type="text" data-kind="stock" placeholder="Idatzi hemen..." />
-            </div>
-
-            <div class="field">
-              <div class="label">Tradizionala</div>
-              <input class="answer" type="text" data-kind="trad" placeholder="Idatzi hemen..." />
-            </div>
+            ${renderNameFields(item, false)}
           `;
+
+          div.style.gridTemplateColumns = `140px repeat(${getNomenclaturesForItem(item).length}, minmax(0, 1fr))`;
 
           div.querySelectorAll("input.answer").forEach(inp => {
             inp.addEventListener("input", () => resetInputState(inp));
@@ -805,7 +828,9 @@
         title.textContent = `Izenetik formulara (${current.nameToFormula.length})`;
         exerciseList.appendChild(title);
 
-        current.nameToFormula = current.nameToFormula.map(item => ({...item, shown: chooseRandomName(item)}));
+        current.nameToFormula = current.nameToFormula
+          .map(item => ({...item, shown: chooseRandomName(item)}))
+          .filter(item => item.shown);
 
         current.nameToFormula.forEach(item => {
           const div = document.createElement("div");
@@ -900,12 +925,12 @@
 
           y += 6;
           doc.setFontSize(8);
-          doc.text(`Sistematikoa: ${displayName(item.sist)}`, 25, y);
-          y += 5;
-          doc.text(`Stock: ${displayName(item.stock)}`, 25, y);
-          y += 5;
-          doc.text(`Tradizionala: ${displayName(item.trad)}`, 25, y);
-          y += 9;
+          const selectedKinds = getNomenclaturesForItem(item);
+          selectedKinds.forEach((kind) => {
+            doc.text(`${NOMENCLATURE_LABELS[kind]}: ${displayName(item[kind])}`, 25, y);
+            y += 5;
+          });
+          y += 4;
         }
 
         if (y > 270) {

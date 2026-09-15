@@ -1,4 +1,4 @@
-const CACHE_NAME = "formuapp-pwa-v12";
+const CACHE_NAME = "formuapp-pwa-v14";
 
 
 const archivosAguardar = [
