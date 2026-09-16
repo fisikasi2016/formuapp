@@ -68,6 +68,17 @@
 
         <div id="compoundsPanel" class="subOptionsPanel" hidden>
 
+          <!-- IOIAK -->
+          <div class="section">
+            <button id="toggleIons" class="btn btn-collapse btn-subcollapse" type="button"
+              aria-expanded="false" aria-controls="ionsPanel">
+              Ioiak ▼
+            </button>
+            <div id="ionsPanel" class="subOptionsPanel" hidden>
+              <div class="row" id="ionButtons"></div>
+            </div>
+          </div>
+
           <!-- KONPOSATU BITARRAK -->
           <div class="section">
 
@@ -102,6 +113,17 @@
 
             <div id="ternaryPanel" class="subOptionsPanel" hidden>
               <div class="row" id="ternaryButtons"></div>
+
+              <div id="oxoTypePanel" class="oxoTypePanel" hidden>
+                <div class="sectionTitle" style="margin-top:14px;">
+                  <span>OXOAZIDO MOTAK</span>
+                </div>
+                <div class="row">
+                  <button class="btn btn-oxo-type" type="button" data-oxo-type="arruntak">Arruntak</button>
+                  <button class="btn btn-oxo-type" type="button" data-oxo-type="bi">Bi atomo zentralekoak</button>
+                  <button class="btn btn-oxo-type" type="button" data-oxo-type="biak">Biak</button>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -177,11 +199,11 @@
             </div>
             <p class="note" style="margin-top:10px;">
               Hidruro Ez Metalikoetan eta Oxoazidoetan, Sistematikoa eta Tradizionala beti erabiliko dira,
-              aukeratutako izendapenak edozein direla ere.
+              aukeratutako izendapenak edozein direla ere. Gatz Hirutar Azidoek Sistematikoa eta Stock erabiltzen dituzte.
             </p>
           </div>
 
-          <!-- GALDERA KOPURUA + ZORROZTASUNA -->
+          <!-- GALDERA KOPURUA -->
           <div class="section" style="margin-top:14px;">
 
             <div class="topbar">
@@ -200,17 +222,6 @@
                   <option>8</option>
                   <option>9</option>
                   <option>10</option>
-                </select>
-
-              </label>
-
-              <label>
-                Zuzenketarako Zorroztasuna
-
-                <select id="difficulty">
-                  <option value="erreza">Erreza</option>
-                  <option value="normal" selected>Normal</option>
-                  <option value="zaila">Zaila</option>
                 </select>
 
               </label>

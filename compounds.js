@@ -858,6 +858,10 @@
 ,
 
       "Oxoazidoak": [
+  { formula: "H2Cr2O7",  trad: "Azido Dikromikoa",      stock: "Ez da izendatzen", sist: "Dihidrogeno (heptaoxidodikromatoa)",    link: "https://youtu.be/VobYWNWVctw" },
+  { formula: "H2S2O5",   trad: "Azido Disulfurosoa",    stock: "Ez da izendatzen", sist: "Dihidrogeno (pentaoxidodisulfatoa)",   link: "https://youtu.be/VobYWNWVctw" },
+  { formula: "H2S2O7",   trad: "Azido Disulfurikoa",    stock: "Ez da izendatzen", sist: "Dihidrogeno (heptaoxidodisulfatoa)",   link: "https://youtu.be/VobYWNWVctw" },
+
   { formula: "HFO",      trad: "Azido Hipofluorosoa",          stock: "Ez da izendatzen", sist: "hidrogeno (oxidofluoratoa)",                 link: "https://youtu.be/VobYWNWVctw" },
   { formula: "HClO",     trad: "Azido Hipoklorosoa",           stock: "Ez da izendatzen", sist: "hidrogeno (oxidokloratoa)",                  link: "https://youtu.be/VobYWNWVctw" },
   { formula: "HClO2",    trad: "Azido Klorosoa",               stock: "Ez da izendatzen", sist: "hidrogeno (dioxidokloratoa)",                link: "https://youtu.be/VobYWNWVctw" },
@@ -1388,7 +1392,81 @@
     { formula: "Al(MnO4)3", trad: "Permanganato Aluminikoa", stock: "Aluminio Permanganatoa", sist: "Aluminio Tris(tetraoxomanganatoa)", link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
     { formula: "Sn(MnO4)4", trad: "Permanganato Eztainnikoa", stock: "Eztainu (IV) Permanganatoa", sist: "Eztainu Tetrakis(tetraoxomanganatoa)", link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
     { formula: "LiMnO4", trad: "Permanganato Litikoa", stock: "Litio Permanganatoa", sist: "Litio Tetraoxomanganatoa", link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
-    { formula: "Mg(MnO4)2", trad: "Permanganato Magnesikoa", stock: "Magnesio Permanganatoa", sist: "Magnesio Bis(tetraoxomanganatoa)", link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" }
+    { formula: "Mg(MnO4)2", trad: "Permanganato Magnesikoa", stock: "Magnesio Permanganatoa", sist: "Magnesio Bis(tetraoxomanganatoa)", link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+  ],
+
+  "Gatz Hirutar Azidoak": [
+    { formula: "NaHCO3",       trad: "Ez da izendatzen", stock: "Sodio Hidrogenokarbonatoa",          sist: "Sodio Hidrogeno(trioxidokarbonatoa)",              nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "KHCO3",        trad: "Ez da izendatzen", stock: "Potasio Hidrogenokarbonatoa",        sist: "Potasio Hidrogeno(trioxidokarbonatoa)",            nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "Ca(HCO3)2",    trad: "Ez da izendatzen", stock: "Kaltzio Hidrogenokarbonatoa",        sist: "Kaltzio Bis(hidrogeno(trioxidokarbonatoa))",       nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+
+    { formula: "NaHSO4",       trad: "Ez da izendatzen", stock: "Sodio Hidrogenosulfatoa",            sist: "Sodio Hidrogeno(tetraoxidosulfatoa)",              nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "KHSO4",        trad: "Ez da izendatzen", stock: "Potasio Hidrogenosulfatoa",          sist: "Potasio Hidrogeno(tetraoxidosulfatoa)",            nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "Ca(HSO4)2",    trad: "Ez da izendatzen", stock: "Kaltzio Hidrogenosulfatoa",          sist: "Kaltzio Bis(hidrogeno(tetraoxidosulfatoa))",       nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+
+    { formula: "NaHSO3",       trad: "Ez da izendatzen", stock: "Sodio Hidrogenosulfitoa",            sist: "Sodio Hidrogeno(trioxidosulfatoa)",                nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "KHSO3",        trad: "Ez da izendatzen", stock: "Potasio Hidrogenosulfitoa",          sist: "Potasio Hidrogeno(trioxidosulfatoa)",              nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+
+    { formula: "NaH2PO4",      trad: "Ez da izendatzen", stock: "Sodio Dihidrogenofosfatoa",          sist: "Sodio Dihidrogeno(tetraoxofosfatoa)",              nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "Na2HPO4",      trad: "Ez da izendatzen", stock: "Disodio Hidrogenofosfatoa",          sist: "Disodio Hidrogeno(tetraoxofosfatoa)",              nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "KH2PO4",       trad: "Ez da izendatzen", stock: "Potasio Dihidrogenofosfatoa",        sist: "Potasio Dihidrogeno(tetraoxofosfatoa)",            nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "K2HPO4",       trad: "Ez da izendatzen", stock: "Dipotasio Hidrogenofosfatoa",        sist: "Dipotasio Hidrogeno(tetraoxofosfatoa)",            nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "Ca(H2PO4)2",   trad: "Ez da izendatzen", stock: "Kaltzio Dihidrogenofosfatoa",        sist: "Kaltzio Bis(dihidrogeno(tetraoxofosfatoa))",       nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
+    { formula: "CaHPO4",       trad: "Ez da izendatzen", stock: "Kaltzio Hidrogenofosfatoa",          sist: "Kaltzio Hidrogeno(tetraoxofosfatoa)",              nomenclatures: ["sist","stock"], link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" }
+  ],
+
+  "Ioiak - Katioiak": [
+    { formula: "H^+",    ion: "Hidrogeno katioia",       nomenclatures: ["ion"], link: "" },
+    { formula: "Na^+",   ion: "Sodio katioia",           nomenclatures: ["ion"], link: "" },
+    { formula: "K^+",    ion: "Potasio katioia",         nomenclatures: ["ion"], link: "" },
+    { formula: "Ag^+",   ion: "Zilar katioia",           nomenclatures: ["ion"], link: "" },
+    { formula: "Mg^2+",  ion: "Magnesio katioia",        nomenclatures: ["ion"], link: "" },
+    { formula: "Ca^2+",  ion: "Kaltzio katioia",         nomenclatures: ["ion"], link: "" },
+    { formula: "Ba^2+",  ion: "Bario katioia",           nomenclatures: ["ion"], link: "" },
+    { formula: "Zn^2+",  ion: "Zink katioia",            nomenclatures: ["ion"], link: "" },
+    { formula: "Al^3+",  ion: "Aluminio katioia",        nomenclatures: ["ion"], link: "" },
+    { formula: "Fe^2+",  ion: "Burdin (II) katioia",     nomenclatures: ["ion"], link: "" },
+    { formula: "Fe^3+",  ion: "Burdin (III) katioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "Cu^+",   ion: "Kupre (I) katioia / Kobre (I) katioia",   nomenclatures: ["ion"], link: "" },
+    { formula: "Cu^2+",  ion: "Kupre (II) katioia / Kobre (II) katioia", nomenclatures: ["ion"], link: "" },
+    { formula: "Co^2+",  ion: "Kobalto (II) katioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "Co^3+",  ion: "Kobalto (III) katioia",   nomenclatures: ["ion"], link: "" },
+    { formula: "Ni^2+",  ion: "Nikel (II) katioia",      nomenclatures: ["ion"], link: "" },
+    { formula: "Ni^3+",  ion: "Nikel (III) katioia",     nomenclatures: ["ion"], link: "" },
+    { formula: "Sn^2+",  ion: "Eztainu (II) katioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "Sn^4+",  ion: "Eztainu (IV) katioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "Pb^2+",  ion: "Berun (II) katioia",      nomenclatures: ["ion"], link: "" },
+    { formula: "Pb^4+",  ion: "Berun (IV) katioia",      nomenclatures: ["ion"], link: "" },
+    { formula: "NH4^+",  ion: "Amonio katioia",          nomenclatures: ["ion"], link: "" },
+    { formula: "H3O^+",  ion: "Hidronio katioia",        nomenclatures: ["ion"], link: "" }
+  ],
+
+  "Ioiak - Anioiak": [
+    { formula: "F^-",       ion: "Fluoruro anioia",            nomenclatures: ["ion"], link: "" },
+    { formula: "Cl^-",      ion: "Kloruro anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "Br^-",      ion: "Bromuro anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "I^-",       ion: "Ioduro anioia",              nomenclatures: ["ion"], link: "" },
+    { formula: "O^2-",      ion: "Oxido anioia",               nomenclatures: ["ion"], link: "" },
+    { formula: "S^2-",      ion: "Sulfuro anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "OH^-",      ion: "Hidroxido anioia",           nomenclatures: ["ion"], link: "" },
+    { formula: "NO2^-",     ion: "Nitrito anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "NO3^-",     ion: "Nitrato anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "CO3^2-",    ion: "Karbonato anioia",           nomenclatures: ["ion"], link: "" },
+    { formula: "HCO3^-",    ion: "Hidrogenokarbonato anioia",  nomenclatures: ["ion"], link: "" },
+    { formula: "SO3^2-",    ion: "Sulfito anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "HSO3^-",    ion: "Hidrogenosulfito anioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "SO4^2-",    ion: "Sulfato anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "HSO4^-",    ion: "Hidrogenosulfato anioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "PO4^3-",    ion: "Fosfato anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "H2PO4^-",   ion: "Dihidrogenofosfato anioia",  nomenclatures: ["ion"], link: "" },
+    { formula: "HPO4^2-",   ion: "Hidrogenofosfato anioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "ClO^-",     ion: "Hipoklorito anioia",         nomenclatures: ["ion"], link: "" },
+    { formula: "ClO2^-",    ion: "Klorito anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "ClO3^-",    ion: "Klorato anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "ClO4^-",    ion: "Perklorato anioia",          nomenclatures: ["ion"], link: "" },
+    { formula: "MnO4^-",    ion: "Permanganato anioia",        nomenclatures: ["ion"], link: "" },
+    { formula: "CrO4^2-",   ion: "Kromato anioia",             nomenclatures: ["ion"], link: "" },
+    { formula: "Cr2O7^2-",  ion: "Dikromato anioia",           nomenclatures: ["ion"], link: "" }
   ]
 
     };
