@@ -358,7 +358,7 @@
     function makeGroupButton(g){
       const b = document.createElement("button");
       b.type = "button";
-      b.className = "btn btn-main";
+      b.className = "btn btn-main active";
       b.textContent = g;
       b.dataset.groupName = g;
       b.addEventListener("click", () => {
@@ -399,6 +399,16 @@
       extras.forEach(g => ternaryButtonsDiv.appendChild(makeGroupButton(g)));
     }
     renderGroupButtons();
+
+    // Hasierako egoera: konposatu mota guztiak hautatuta.
+    // Oxoazidoetan "Biak" da aukera lehenetsia.
+    const defaultOxoType = oxoTypeButtons.find(b => b.dataset.oxoType === "biak");
+    if(defaultOxoType){
+      defaultOxoType.classList.add("active");
+    }
+    if(oxoTypePanel){
+      oxoTypePanel.hidden = false;
+    }
 
     // =========================================================
     // SUBMENÚS COLAPSABLES
@@ -459,11 +469,16 @@
     // =========================================================
     function buildSetForMode(mode, total, selectedGroups){
       const allowedKinds = getSelectedNomenclatures();
-      const k = selectedGroups.length;
+
+      // Nahastu taldeak froga bakoitzean.
+      // Horrela, 5 galdera bakarrik eskatzen badira, ez dira beti
+      // zerrendako lehenengo 5 konposatu motak aukeratuko.
+      const randomizedGroups = shuffle([...selectedGroups]);
+      const k = randomizedGroups.length;
       const counts = distributeEvenly(total, k);
 
       let collected = [];
-      selectedGroups.forEach((gName, idx) => {
+      randomizedGroups.forEach((gName, idx) => {
         let dataset = (GROUPS[gName] || []).map(item => ({...item, groupName:gName}));
 
         if(gName === "Oxoazidoak"){
@@ -549,7 +564,7 @@
       const selectedNomenclatures = getSelectedNomenclatures();
       const wantA = btnFormulaIzena.classList.contains("active");
       const wantB = btnIzenaFormula.classList.contains("active");
-      const n = Math.max(1, Math.min(10, parseInt(numSel.value, 10) || 5));
+      const n = Math.max(1, Math.min(15, parseInt(numSel.value, 10) || 5));
 
       exerciseList.innerHTML = "";
       current.formulaToName = [];
