@@ -857,6 +857,79 @@
 ]
 ,
 
+<<<<<<< HEAD
+  "Oxoazidoak": [
+{ formula: "HFO",      trad: "Azido Hipofluorosoa",          stock: "Ez da izendatzen", sist: "hidrogeno (oxidofluoratoa)",                 link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HClO",     trad: "Azido Hipoklorosoa",           stock: "Ez da izendatzen", sist: "hidrogeno (oxidokloratoa)",                  link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HClO2",    trad: "Azido Klorosoa",               stock: "Ez da izendatzen", sist: "hidrogeno (dioxidokloratoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HClO3",    trad: "Azido Klorikoa",               stock: "Ez da izendatzen", sist: "hidrogeno (trioxidokloratoa)",               link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HClO4",    trad: "Azido Perklorikoa",            stock: "Ez da izendatzen", sist: "hidrogeno (tetraoxidokloratoa)",             link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HBrO",     trad: "Azido Hipobromosoa",           stock: "Ez da izendatzen", sist: "hidrogeno (oxidobromatoa)",                  link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HBrO2",    trad: "Azido Bromosoa",               stock: "Ez da izendatzen", sist: "hidrogeno (dioxidobromatoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HBrO3",    trad: "Azido Bromikoa",               stock: "Ez da izendatzen", sist: "hidrogeno (troxidobromatoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HBrO4",    trad: "Azido Perbromikoa",            stock: "Ez da izendatzen", sist: "hidrogeno (tetraoxidobromatoa)",             link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HIO",      trad: "Azido Hipoiodosoa",            stock: "Ez da izendatzen", sist: "hidrogeno (oxidoiodatoa)",                   link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HIO2",     trad: "Azido Iodosoa",                stock: "Ez da izendatzen", sist: "hidrogeno (dioxidoiodatoa)",                 link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HIO3",     trad: "Azido Iodikoa",                stock: "Ez da izendatzen", sist: "hidrogeno (trioxidoiodatoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HIO4",     trad: "Azido Periodikoa",             stock: "Ez da izendatzen", sist: "hidrogeno (tetraoxidoiodatoa)",              link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2SO2",    trad: "Azido Hiposulfurosoa",         stock: "Ez da izendatzen", sist: "Dihidrogeno (dioxidosulfatoa)",              link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2SO3",    trad: "Azido Sulfurosoa",             stock: "Ez da izendatzen", sist: "Dihidrogeno (trioxidosulfatoa)",             link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2SO4",    trad: "Azido Sulfurikoa",             stock: "Ez da izendatzen", sist: "Dihidrogeno (tetraoxidosulfatoa)",           link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2SeO2",   trad: "Azido Hiposeleniosoa",         stock: "Ez da izendatzen", sist: "Dihidrogeno (dioxidoseleniatoa)",            link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2SeO3",   trad: "Azido Seleniosoa",             stock: "Ez da izendatzen", sist: "Dihidrogeno (trioxidoseleniatoa)",           link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2SeO4",   trad: "Azido Selenikoa",              stock: "Ez da izendatzen", sist: "Dihidrogeno (tetraoxidoseleniatoa)",         link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2TeO2",   trad: "Azido Hipotelurosoa",          stock: "Ez da izendatzen", sist: "Dihidrogeno (dioxidoseleniatoa)",            link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2TeO3",   trad: "Azido Telurosoa",              stock: "Ez da izendatzen", sist: "Dihidrogeno (trioxidoseleniatoa)",           link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2TeO4",   trad: "Azido Telurikoa",              stock: "Ez da izendatzen", sist: "Dihidrogeno (tetraoxidoseleniatoa)",         link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HNO",      trad: "Azido Hiponitrosoa",           stock: "Ez da izendatzen", sist: "hidrogeno (oxidonitratoa)",                   link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HNO2",     trad: "Azido Nitrosoa",               stock: "Ez da izendatzen", sist: "hidrogeno (dioxidonitratoa)",                 link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HNO3",     trad: "Azido Nitrikoa",               stock: "Ez da izendatzen", sist: "hidrogeno (trioxidonitratoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HBO2",     trad: "Azido Metaborikoa",            stock: "Ez da izendatzen", sist: "Dihidrogeno (dioxidoboratoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2CO2",    trad: "Azido Karbonosoa",             stock: "Ez da izendatzen", sist: "Dihidrogeno (dioxidokarbonatoa)",             link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2CO3",    trad: "Azido Karbonikoa",             stock: "Ez da izendatzen", sist: "Dihidrogeno (trioxidokarbonatoa)",            link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2SiO4",   trad: "Azido Silizikoa",              stock: "Ez da izendatzen", sist: "Tetrahidrogeno (tetraoxidosilikatoa)",        link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3PO3",    trad: "Azido Fosforosoa",       stock: "Ez da izendatzen", sist: "Trihidrogeno (trioxidofosfatoa)",             link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3PO4",    trad: "Azido Fosforikoa",       stock: "Ez da izendatzen", sist: "Trihidrogeno (tetraoxidofosfatoa)",           link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3AsO3",   trad: "Azido Artseniosoa",      stock: "Ez da izendatzen", sist: "Trihidrogeno (trioxidoartseniatoa)",          link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3AsO4",   trad: "Azido Artsenikoa",       stock: "Ez da izendatzen", sist: "Trihidrogeno (tetraoxidoartseniatoa)",        link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3SbO3",   trad: "Azido Antimoniosoa",     stock: "Ez da izendatzen", sist: "Trihidrogeno (trioxidoantimoniatoa)",         link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3SbO4",   trad: "Azido Antimonikoa",      stock: "Ez da izendatzen", sist: "Trihidrogeno (tetraoxidoantimoniatoa)",       link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2CrO4",   trad: "Azido Kromikoa",               stock: "Ez da izendatzen", sist: "Dihidrogeno (tetraoxidokromatoa)",            link: "https://youtu.be/tjS-W1gcEZg?si=5FND_RZ_KUEh2eYk" },
+{ formula: "H2MnO3",   trad: "Azido Maganosoa",              stock: "Ez da izendatzen", sist: "Dihidrogeno (troxidomaganatoa)",              link: "https://youtu.be/tjS-W1gcEZg?si=5FND_RZ_KUEh2eYk" },
+{ formula: "H2MnO4",   trad: "Azido Maganikoa",              stock: "Ez da izendatzen", sist: "Dihidrogeno (tetraoxidomanganatoa)",          link: "https://youtu.be/tjS-W1gcEZg?si=5FND_RZ_KUEh2eYk" },
+{ formula: "HMnO4",    trad: "Azido Permanganikoa",          stock: "Ez da izendatzen", sist: "hidrogeno (tetraoxidomaganatoa)",             link: "https://youtu.be/tjS-W1gcEZg?si=5FND_RZ_KUEh2eYk" }
+  ],
+
+  "Oxoazido poliatomikoak": [
+{ formula: "H2Cr2O7",  trad: "Azido Dikromikoa",      stock: "Ez da izendatzen", sist: "Dihidrogeno (heptaoxidodikromatoa)",    link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2S2O5",   trad: "Azido Disulfurosoa",    stock: "Ez da izendatzen", sist: "Dihidrogeno (pentaoxidodisulfatoa)",   link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H2S2O7",   trad: "Azido Disulfurikoa",    stock: "Ez da izendatzen", sist: "Dihidrogeno (heptaoxidodisulfatoa)",   link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4P2O3",   trad: "Azido Pirohipofosforosoa",     stock: "Ez da izendatzen", sist: "Tetrahidrogeno (troxidodifosfatoa)",          link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4P2O5",   trad: "Azido Pirofosforosoa",         stock: "Ez da izendatzen", sist: "Tetrahidrogeno (pentaoxidodifosfatoa)",       link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4P2O7",   trad: "Azido Pirofosforikoa",         stock: "Ez da izendatzen", sist: "Tetrahidrogeno (heptaoxidodifosfatoa)",       link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4As2O3",  trad: "Azido Pirohipoartseniosoa",    stock: "Ez da izendatzen", sist: "Tetrahidrogeno (trioxidodiartseniatoa)",      link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4As2O5",  trad: "Azido Piroartseniosoa",        stock: "Ez da izendatzen", sist: "Tetrahidrogeno (pentaoxidodiartseniatoa)",    link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4As2O7",  trad: "Azido Piroartsenikoa",         stock: "Ez da izendatzen", sist: "Tetrahidrogeno (heptaoxidodiartseniatoa)",    link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4Sb2O3",  trad: "Azido Pirohipoantimoniosoa",   stock: "Ez da izendatzen", sist: "Tetrahidrogeno (trioxidodiantimoniatoa)",     link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4Sb2O5",  trad: "Azido Piroantimoniosoa",       stock: "Ez da izendatzen", sist: "Tetrahidrogeno (pentaoxidodiantimoniatoa)",   link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H4Sb2O7",  trad: "Azido Piroantimonikoa",        stock: "Ez da izendatzen", sist: "Tetrahidrogeno (heptaoxidodiantimoniatoa)",   link: "https://youtu.be/VobYWNWVctw" }
+  ],
+
+  "Oxoazido polihidratatuak": [
+{ formula: "HPO",      trad: "Azido Metahipofosforosoa",     stock: "Ez da izendatzen", sist: "hidrogeno (oxidofosfatoa)",                   link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HPO2",     trad: "Azido Metafosforosoa",         stock: "Ez da izendatzen", sist: "hidrogeno (dioxidofosfatoa)",                 link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HPO3",     trad: "Azido Metafosforikoa",         stock: "Ez da izendatzen", sist: "hidrogeno (trioxidofosfatoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HAsO",     trad: "Azido Metahipoartseniosoa",    stock: "Ez da izendatzen", sist: "hidrogeno (oxidoartseniatoa)",                link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HAsO2",    trad: "Azido Metartseniosoa",         stock: "Ez da izendatzen", sist: "hidrogeno (dioxidoartseniatoa)",              link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HAsO3",    trad: "Azido Metartsenikoa",          stock: "Ez da izendatzen", sist: "hidrogeno (trioxidoartseniatoa)",             link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HSbO",     trad: "Azido Metahipoantimoniosoa",   stock: "Ez da izendatzen", sist: "hidrogeno (oxidoantimoniatoa)",               link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HSbO2",    trad: "Azido Metantimoniosoa",        stock: "Ez da izendatzen", sist: "hidrogeno (dioxidoantimoniatoa)",             link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "HSbO3",    trad: "Azido Metantimonikoa",         stock: "Ez da izendatzen", sist: "hidrogeno (trioxidoantimoniatoa)",            link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3PO2",    trad: "Azido (Orto)Hipofosforosoa",   stock: "Ez da izendatzen", sist: "Trihidrogeno (dioxidofosfatoa)",              link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3AsO2",   trad: "Azido (Orto)Hipoartseniosoa",  stock: "Ez da izendatzen", sist: "Trihidrogeno (dioxidoartseniatoa)",           link: "https://youtu.be/VobYWNWVctw" },
+{ formula: "H3SbO2",   trad: "Azido (Orto)Hipoantimoniosoa", stock: "Ez da izendatzen", sist: "Trihidrogeno (dioxidoantimoniatoa)",          link: "https://youtu.be/VobYWNWVctw" }
+  ],
+=======
       "Oxoazidoak": [
   { formula: "H2Cr2O7",  trad: "Azido Dikromikoa",      stock: "Ez da izendatzen", sist: "Dihidrogeno (heptaoxidodikromatoa)",    link: "https://youtu.be/VobYWNWVctw" },
   { formula: "H2S2O5",   trad: "Azido Disulfurosoa",    stock: "Ez da izendatzen", sist: "Dihidrogeno (pentaoxidodisulfatoa)",   link: "https://youtu.be/VobYWNWVctw" },
@@ -942,6 +1015,7 @@
   { formula: "HMnO4",    trad: "Azido Permanganikoa",          stock: "Ez da izendatzen", sist: "hidrogeno (tetraoxidomaganatoa)",             link: "https://youtu.be/tjS-W1gcEZg?si=5FND_RZ_KUEh2eYk" }
 ]
 ,
+>>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
   "Gatz Hirutarrak":[
       { formula: "AgClO",     trad: "Hipoklorito Argentikoa", stock: "Zilar Hipokloritoa", sist: "Zilar Oxidokloratoa",                         link: "https://youtu.be/Zt1V52c0kcA?si=3phJT9XxWHGH_VJW" },
@@ -1449,6 +1523,56 @@
     { formula: "O^2-",      ion: "Oxido anioia",               nomenclatures: ["ion"], link: "" },
     { formula: "S^2-",      ion: "Sulfuro anioia",             nomenclatures: ["ion"], link: "" },
     { formula: "OH^-",      ion: "Hidroxido anioia",           nomenclatures: ["ion"], link: "" },
+<<<<<<< HEAD
+    { formula: "HCO3^-",    ion: "Hidrogenokarbonato anioia",  nomenclatures: ["ion"], link: "" },
+    { formula: "HSO3^-",    ion: "Hidrogenosulfito anioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "HSO4^-",    ion: "Hidrogenosulfato anioia",    nomenclatures: ["ion"], link: "" },
+    { formula: "H2PO4^-",   ion: "Dihidrogenofosfato anioia",  nomenclatures: ["ion"], link: "" },
+    { formula: "HPO4^2-",   ion: "Hidrogenofosfato anioia",    nomenclatures: ["ion"], link: "" },
+  ]
+
+,  "Oxoanioiak": [
+{ formula: "ClO^-", trad: "Hipokloritoa anioia", sist: "(oxidokloratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "ClO2^-", trad: "Kloritoa anioia", sist: "(dioxidokloratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "ClO3^-", trad: "Kloratoa anioia", sist: "(trioxidokloratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "ClO4^-", trad: "Perkloratoa anioia", sist: "(tetraoxidokloratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "BrO^-", trad: "Hipobromitoa anioia", sist: "(oxidobromatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "BrO2^-", trad: "Bromitoa anioia", sist: "(dioxidobromatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "BrO3^-", trad: "Bromatoa anioia", sist: "(trioxidobromatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "BrO4^-", trad: "Perbromatoa anioia", sist: "(tetraoxidobromatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "IO^-", trad: "Hipoioditoa anioia", sist: "(oxidoiodatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "IO2^-", trad: "Ioditoa anioia", sist: "(dioxidoiodatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "IO3^-", trad: "Iodatoa anioia", sist: "(trioxidoiodatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "IO4^-", trad: "Periodatoa anioia", sist: "(tetraoxidoiodatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "SO2^2-", trad: "Hiposulfitoa anioia", sist: "(dioxidosulfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "SO3^2-", trad: "Sulfitoa anioia", sist: "(trioxidosulfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "SO4^2-", trad: "Sulfatoa anioia", sist: "(tetraoxidosulfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "SeO2^2-", trad: "Hiposelenitoa anioia", sist: "(dioxidoseleniatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "SeO3^2-", trad: "Selenitoa anioia", sist: "(trioxidoseleniatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "SeO4^2-", trad: "Selenatoa anioia", sist: "(tetraoxidoseleniatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "TeO2^2-", trad: "Hipoteluritoa anioia", sist: "(dioxidoteluratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "TeO3^2-", trad: "Teluritoa anioia", sist: "(trioxidoteluratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "TeO4^2-", trad: "Teluratoa anioia", sist: "(tetraoxidoteluratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "NO^-", trad: "Hiponitritoa anioia", sist: "(oxidonitratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "NO2^-", trad: "Nitritoa anioia", sist: "(dioxidonitratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "NO3^-", trad: "Nitratoa anioia", sist: "(trioxidonitratoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "CO2^2-", trad: "Karbonitoa anioia", sist: "(dioxidokarbonatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "CO3^2-", trad: "Karbonatoa anioia", sist: "(trioxidokarbonatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "PO^3-", trad: "Metahipofosfitoa anioia", sist: "(oxidofosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "PO2^3-", trad: "Metafosfitoa anioia", sist: "(dioxidofosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "PO3^-", trad: "Metafosfatoa anioia", sist: "(trioxidofosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "PO3^3-", trad: "Fosfitoa anioia", sist: "(trioxidofosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "PO4^3-", trad: "Fosfatoa anioia", sist: "(tetraoxidofosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "P2O3^4-", trad: "Pirohipofosfitoa / Dihipofosfitoa anioia", sist: "(trioxidodifosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "P2O5^4-", trad: "Pirofosfitoa / Difosfitoa anioia", sist: "(pentaoxidodifosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "P2O7^4-", trad: "Pirofosfato anioia / Difosfato anioia", sist: "(heptaoxidodifosfatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "CrO4^2-", trad: "Kromatoa anioia", sist: "(tetraoxidokromatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "Cr2O7^2-", trad: "Dikromatoa anioia", sist: "(heptaoxidodikromatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "MnO3^2-", trad: "Manganitoa anioia", sist: "(trioxidomanganatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "MnO4^2-", trad: "Manganatoa anioia", sist: "(tetraoxidomanganatoa) anioia", nomenclatures: ["sist","trad"], link: "" },
+{ formula: "MnO4^-", trad: "Permanganatoa anioia", sist: "(tetraoxidomanganatoa) anioia", nomenclatures: ["sist","trad"], link: "" }
+  ]
+=======
     { formula: "NO2^-",     ion: "Nitrito anioia",             nomenclatures: ["ion"], link: "" },
     { formula: "NO3^-",     ion: "Nitrato anioia",             nomenclatures: ["ion"], link: "" },
     { formula: "CO3^2-",    ion: "Karbonato anioia",           nomenclatures: ["ion"], link: "" },
@@ -1469,4 +1593,5 @@
     { formula: "Cr2O7^2-",  ion: "Dikromato anioia",           nomenclatures: ["ion"], link: "" }
   ]
 
+>>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
     };
