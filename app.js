@@ -2,7 +2,6 @@
     // DATOS (2 por grupo para ver aleatoriedad) + link de ayuda
     // =========================================================
 
-<<<<<<< HEAD
     // Oxoanioiak: parentesiak eta kanpoko karga
     GROUPS["Oxoanioiak"].forEach(item => {
       item.formula = item.formula.replace(
@@ -10,8 +9,61 @@
         "($1)$2"
       );
     });
-=======
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
+
+    
+    // Separación de oxoácidos normales y polihidratados
+
+    const elementosPolihidratados = /^(H\d*(?:P|As|Sb))/;
+
+    const ortoNormales = GROUPS["Oxoazidoak"]
+      .filter(item =>
+        elementosPolihidratados.test(item.formula)
+      );
+
+    const piroPolihidratados = GROUPS["Oxoazido poliatomikoak"]
+      .filter(item =>
+        /^H\d+(P|As|Sb)2O\d+$/.test(item.formula)
+      );
+
+    const metaYOrtoEspeciales =
+      GROUPS["Oxoazido polihidratatuak"];
+
+    // En el grupo normal, conservar los orto
+    // y quitar el prefijo (Orto) de sus nombres.
+    GROUPS["Oxoazidoak"].forEach(item => {
+      item.trad = item.trad.replace(/\(Orto\)/gi, "");
+    });
+
+    // Construir el grupo especial completo.
+    const todosPolihidratados = [
+      ...metaYOrtoEspeciales,
+      ...piroPolihidratados,
+      ...ortoNormales
+    ].map(item => {
+      const copia = { ...item };
+
+      // Identificar los orto por su fórmula.
+      if (
+        /^H3(P|As|Sb)O\d+$/.test(copia.formula)
+      ) {
+        copia.trad = copia.trad
+          .replace(/^Azido\s+\(Orto\)/i, "Azido Orto")
+          .replace(/^Azido\s+(?!Orto)/i, "Azido Orto");
+      }
+
+      return copia;
+    });
+
+    // Evitar fórmulas repetidas.
+    GROUPS["Oxoazido polihidratatuak"] = [
+      ...new Map(
+        todosPolihidratados.map(item => [
+          item.formula,
+          item
+        ])
+      ).values()
+    ];
+
 
     const BINARY_ORDER = [
       "Hidruro Metalikoak",
@@ -29,17 +81,10 @@
     const TERNARY_ORDER = [
       "Hidroxidoak",
       "Oxoazidoak",
-<<<<<<< HEAD
       "Gatz Hirutarrak"
     ];
 
     const SPECIAL_ORDER = ["Ioiak - Katioiak", "Ioiak - Anioiak", "Oxoanioiak", "Oxoazido poliatomikoak", "Oxoazido polihidratatuak", "Gatz Hirutar Azidoak"];
-=======
-      "Gatz Hirutarrak",
-      "Gatz Hirutar Azidoak"
-    ];
-
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
     const BI_CENTRAL_OXO_FORMULAS = new Set([
       "H2Cr2O7", "H2S2O5", "H2S2O7",
       "H4P2O3", "H4P2O5", "H4P2O7",
@@ -57,10 +102,7 @@
     const ionButtonsDiv = document.getElementById("ionButtons");
     const binaryButtonsDiv = document.getElementById("binaryButtons");
     const ternaryButtonsDiv = document.getElementById("ternaryButtons");
-<<<<<<< HEAD
     const specialButtonsDiv = document.getElementById("specialButtons");
-=======
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
     const btnFormulaIzena = document.getElementById("btn-formula-izena");
     const btnIzenaFormula = document.getElementById("btn-izena-formula");
@@ -119,11 +161,7 @@
     function normalizeName(name, kind){
       if(!name) return "";
 
-<<<<<<< HEAD
       let s = name.toString().normalize("NFC").toLocaleLowerCase("eu");
-=======
-      let s = name.toLowerCase();
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
       // quitar paréntesis y su contenido: (mono), (mon)
       s = s.replace(/\((mono|mon)\)/g, "");
@@ -232,7 +270,6 @@
         return ["ion"];
       }
 
-<<<<<<< HEAD
       const gruposObligatorios = [
         "Hidruro Ez Metalikoak",
         "Oxoazidoak",
@@ -242,9 +279,6 @@
       ];
 
       if (gruposObligatorios.includes(item.groupName)) {
-=======
-      if(item.groupName === "Hidruro Ez Metalikoak" || item.groupName === "Oxoazidoak"){
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
         return ["sist", "trad"];
       }
 
@@ -395,11 +429,7 @@
     function makeGroupButton(g){
       const b = document.createElement("button");
       b.type = "button";
-<<<<<<< HEAD
       b.className = "btn btn-main";
-=======
-      b.className = "btn btn-main active";
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
       b.textContent = g;
       b.dataset.groupName = g;
       b.addEventListener("click", () => {
@@ -420,21 +450,14 @@
     }
 
     function renderGroupButtons(){
-<<<<<<< HEAD
       binaryButtonsDiv.innerHTML = "";
       ternaryButtonsDiv.innerHTML = "";
       specialButtonsDiv.innerHTML = "";
-=======
-      ionButtonsDiv.innerHTML = "";
-      binaryButtonsDiv.innerHTML = "";
-      ternaryButtonsDiv.innerHTML = "";
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
       const loaded = Object.keys(GROUPS);
       const has = new Set(loaded);
 
       const ions = ION_ORDER.filter(x => has.has(x));
-<<<<<<< HEAD
       const special = SPECIAL_ORDER.filter(x => has.has(x));
       const bin = BINARY_ORDER.filter(x => has.has(x));
       const ter = TERNARY_ORDER.filter(x => has.has(x));
@@ -446,18 +469,6 @@
       bin.forEach(g => binaryButtonsDiv.appendChild(makeGroupButton(g)));
       ter.forEach(g => ternaryButtonsDiv.appendChild(makeGroupButton(g)));
       extras.forEach(g => specialButtonsDiv.appendChild(makeGroupButton(g)));
-=======
-      const bin = BINARY_ORDER.filter(x => has.has(x));
-      const ter = TERNARY_ORDER.filter(x => has.has(x));
-      const extras = loaded
-        .filter(x => !ION_ORDER.includes(x) && !BINARY_ORDER.includes(x) && !TERNARY_ORDER.includes(x))
-        .sort((a,b)=>a.localeCompare(b));
-
-      ions.forEach(g => ionButtonsDiv.appendChild(makeGroupButton(g)));
-      bin.forEach(g => binaryButtonsDiv.appendChild(makeGroupButton(g)));
-      ter.forEach(g => ternaryButtonsDiv.appendChild(makeGroupButton(g)));
-      extras.forEach(g => ternaryButtonsDiv.appendChild(makeGroupButton(g)));
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
     }
     renderGroupButtons();
 
@@ -465,11 +476,7 @@
     // Oxoazidoetan "Biak" da aukera lehenetsia.
     const defaultOxoType = oxoTypeButtons.find(b => b.dataset.oxoType === "biak");
     if(defaultOxoType){
-<<<<<<< HEAD
       defaultOxoType.classList.remove("active");
-=======
-      defaultOxoType.classList.add("active");
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
     }
     if(oxoTypePanel){
       oxoTypePanel.hidden = false;
@@ -494,11 +501,7 @@
     }
 
     setupSubPanel("toggleCompounds", "compoundsPanel", "Konposatuak");
-<<<<<<< HEAD
     setupSubPanel("toggleSpecial", "specialPanel", "Konposatu bereziak");
-=======
-    setupSubPanel("toggleIons", "ionsPanel", "Ioiak");
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
     setupSubPanel("toggleBinary", "binaryPanel", "Konposatu bitarrak");
     setupSubPanel("toggleTernary", "ternaryPanel", "Konposatu hirutarrak");
     setupSubPanel("toggleExam", "examPanel", "Frogaren ezaugarriak");
@@ -525,17 +528,10 @@
         btnIzenaFormula.classList.contains("active");
 
       const hasNomenclatures = getSelectedNomenclatures().length > 0;
-<<<<<<< HEAD
       const hasIonGroup = selectedGroups.some(g => isIonGroup(g) || g === "Oxoanioiak");
 
       const oxoSelected = selectedGroups.includes("Oxoazidoak");
       const oxoReady = true;
-=======
-      const hasIonGroup = selectedGroups.some(isIonGroup);
-
-      const oxoSelected = selectedGroups.includes("Oxoazidoak");
-      const oxoReady = !oxoSelected || !!getSelectedOxoType();
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
       actionsPanel.hidden = !(hasGroups && hasModes && (hasNomenclatures || hasIonGroup) && oxoReady);
     }
@@ -553,7 +549,6 @@
       const k = randomizedGroups.length;
       const counts = distributeEvenly(total, k);
 
-<<<<<<< HEAD
       const slots = randomizedGroups.flatMap((g, i) => Array(counts[i]).fill(g));
       const usedFormulas = new Set();
       const usedElements = new Set();
@@ -574,32 +569,6 @@
         usedFormulas.add(chosen.formula);
         elementsOf(chosen.formula).forEach(e => usedElements.add(e));
       }
-=======
-      let collected = [];
-      randomizedGroups.forEach((gName, idx) => {
-        let dataset = (GROUPS[gName] || []).map(item => ({...item, groupName:gName}));
-
-        if(gName === "Oxoazidoak"){
-          const oxoType = getSelectedOxoType();
-          if(oxoType === "arruntak"){
-            dataset = dataset.filter(item => !BI_CENTRAL_OXO_FORMULAS.has(item.formula));
-          }else if(oxoType === "bi"){
-            dataset = dataset.filter(item => BI_CENTRAL_OXO_FORMULAS.has(item.formula));
-          }else if(oxoType !== "biak"){
-            dataset = [];
-          }
-        }
-
-        dataset = dataset.filter(item => availableNameOptions(item, allowedKinds).length > 0);
-
-        const need = counts[idx];
-        const picked = dataset.length >= need
-          ? pickRandomNNoRepeat(dataset, need)
-          : pickWithWrap(dataset, need);
-
-        collected = collected.concat(picked);
-      });
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
       collected = shuffle(collected);
 
@@ -669,15 +638,9 @@
       current.formulaToName = [];
       current.nameToFormula = [];
 
-<<<<<<< HEAD
       const hasIonGroup = selectedGroups.some(g => isIonGroup(g) || g === "Oxoanioiak");
       const oxoSelected = selectedGroups.includes("Oxoazidoak");
       const oxoReady = true;
-=======
-      const hasIonGroup = selectedGroups.some(isIonGroup);
-      const oxoSelected = selectedGroups.includes("Oxoazidoak");
-      const oxoReady = !oxoSelected || !!getSelectedOxoType();
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
       if(
         selectedGroups.length === 0 ||
@@ -1093,7 +1056,6 @@
       generarPDF(true);  // Froga Emaitzekin
     });
 
-<<<<<<< HEAD
     function escribirFormulaPDF(doc, formula, x, y, tamaina, oxoanioa = false) {
       const raw = String(formula ?? "");
       const zatiak = raw.split("^");
@@ -1129,8 +1091,6 @@
       doc.setFontSize(tamaina);
     }
 
-=======
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
     function generarPDF(conEmaitzak) {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
@@ -1157,7 +1117,6 @@
       current.formulaToName.forEach((item) => {
         if (!conEmaitzak) {
           doc.setFontSize(14);
-<<<<<<< HEAD
           doc.text(`${counter}.`, 20, y);
           escribirFormulaPDF(doc, item.formula, 30, y, 14, item.groupName === "Oxoanioiak");
           y += 12;
@@ -1165,13 +1124,6 @@
           doc.setFontSize(10);
           doc.text(`${counter}.`, 20, y);
           escribirFormulaPDF(doc, item.formula, 30, y, 10, item.groupName === "Oxoanioiak");
-=======
-          doc.text(`${counter}. ${formulaText(item.formula)}`, 20, y);
-          y += 12;
-        } else {
-          doc.setFontSize(10);
-          doc.text(`${counter}. ${formulaText(item.formula)}`, 20, y);
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
 
           y += 6;
           doc.setFontSize(8);
@@ -1205,12 +1157,8 @@
 
           y += 6;
           doc.setFontSize(8);
-<<<<<<< HEAD
           doc.text("Emaitza:", 25, y);
           escribirFormulaPDF(doc, item.formula, 44, y, 8, item.groupName === "Oxoanioiak");
-=======
-          doc.text(`Emaitza: ${formulaText(item.formula)}`, 25, y);
->>>>>>> 05335423cd35840c6c233fa10774bbd6926df38f
           y += 9;
         }
 
